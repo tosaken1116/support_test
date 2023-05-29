@@ -1,17 +1,7 @@
-import {
-    Box,
-    Button,
-    Modal,
-    Paper,
-    Stack,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Modal, Paper, Stack, Typography } from "@mui/material";
 import axios from "axios";
-import Image from "next/image";
 import { useState } from "react";
 import { CustomButton } from "../common/CustomButton";
-import DatePick from "../common/DatePick";
 
 export const AddSchedule = ({ refetch }: { refetch: () => Promise<void> }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -76,64 +66,10 @@ export const AddSchedule = ({ refetch }: { refetch: () => Promise<void> }) => {
                         spacing={3}
                         p={2}
                     >
-                        <Button
-                            sx={{
-                                textAlign: "right",
-                                position: "absolute",
-                                right: 0,
-                                top: 0,
-                            }}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <Image
-                                src="/images/catclose.png"
-                                alt="cat close.png"
-                                width={100}
-                                height={100}
-                            />
-                        </Button>
-
                         <Typography variant="h6">Scheduleを追加</Typography>
-
-                        <TextField
-                            id="outlined-multiline-flexible"
-                            label="Schedule"
-                            multiline
-                            name="title"
-                            maxRows={1}
-                            sx={{
-                                width: "100%",
-                                minWidth: "200px",
-                                maxWidth: "300px",
-                                textAlign: "center",
-                                m: "auto",
-                            }}
-                            onChange={(e) => setScheduleName(e.target.value)}
-                        />
-                        <Box component="div">
-                            <Typography variant="h6">開始日時を追加</Typography>
-                            <DatePick
-                                setDate={setStartTime}
-                                selectedDate={startTime}
-                            />
-                        </Box>
-                        <Box component="div">
-                            <Typography variant="h6">終了日時を追加</Typography>
-                            <DatePick
-                                setDate={setEndTime}
-                                selectedDate={endTime}
-                            />
-                        </Box>
-                        <CustomButton
-                            onclick={() => sendAddSchedule()}
-                            primarycolor="#C5956B"
-                            secondarycolor="#C37349"
-                            buttonname="send"
-                        />
                     </Stack>
                 </Paper>
             </Modal>
         </>
     );
 };
-
